@@ -1,0 +1,71 @@
+#! /bin/sh
+
+# chkconfig: - 99 01
+# description: A network server that connects a signing server and its clients
+
+. /etc/rc.d/init.d/functions
+
+prog=sigul_bridge
+lockfile=/var/lock/subsys/sigul_bridge
+
+start()
+{
+    echo -n $"Starting $prog: "
+    daemon "$prog" -d -v
+    RETVAL=$?
+    echo
+    [ "$RETVAL" -eq 0 ] && touch "$lockfile"
+    return "$RETVAL"
+}
+
+stop()
+{
+    echo -n $"Shutting down $prog: "
+    killproc "$prog"
+    RETVAL=$?
+    echo
+    rm -f "$lockfile"
+    return "$RETVAL"
+}
+
+restart()
+{
+    stop
+    start
+}
+
+rh_status_q()
+{
+    status "$prog" >/dev/null 2>&1
+}
+
+case "$1" in
+    start)
+	rh_status_q && exit 0
+	start
+	;;
+    stop)
+	rh_status_q || exit 0
+	stop
+	;;
+    reload)
+	rh_status_q || exit 7
+	restart
+	;;
+    restart|force-reload)
+	restart
+	;;
+    condrestart|try-restart)
+	rh_status_q || exit 0
+	restart
+	;;
+    status)
+	status "$prog"
+	RETVAL=$?
+	;;
+    *)
+	echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+	RETVAL=2
+esac
+
+exit "$RETVAL"
