@@ -1,7 +1,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.96
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -96,6 +96,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Tue Jul 28 2009 Jesse Keating <jkeating@redhat.com> - 0.96-6
+- Fix the patch in -4
+
 * Tue Jul 28 2009 Jesse Keating <jkeating@redhat.com> - 0.96-5
 - Add a dist tag
 
