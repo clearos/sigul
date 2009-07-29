@@ -1,0 +1,28 @@
+From a94667940ac9523b8132f9c003a8f4b4fab6b7af Mon Sep 17 00:00:00 2001
+From: Jesse Keating <jkeating@redhat.com>
+Date: Tue, 28 Jul 2009 20:06:30 -0700
+Subject: [PATCH 2/2] Temporary workaround for accidentially re-downloading stale rpms.
+
+This is causing us to download the same rpm over and over which
+really doesn't work well.  This is a temporary work around given
+to me by Mitr.
+---
+ src/bridge.py |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/bridge.py b/src/bridge.py
+index 15f6422..4bda697 100644
+--- a/src/bridge.py
++++ b/src/bridge.py
+@@ -309,7 +309,7 @@ class SignRpmRequestType(RequestType):
+         # attempts to initialize nss with our certificate database.
+         import koji
+ 
+-        if self.__koji_session is None:
++        if True:
+             try:
+                 self.__koji_config = utils.koji_read_config()
+                 # self.__request_fields['user'] safety was verified by
+-- 
+1.6.2.5
+

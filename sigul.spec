@@ -1,7 +1,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.96
-Release: 2
+Release: 4
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -11,7 +11,8 @@ Source1: sigul_bridge.init
 Source2: sigul_server.init
 Source3: sigul.logrotate
 Requires: koji, logrotate, m2crypto, pexpect, pygpgme, python, python-fedora,
-Requires: python-nss >= 0.4, python-sqlalchemy, python-sqlite2
+Requires: python-nss >= 0.6
+Requires: python-sqlalchemy, python-sqlite2
 Requires: python-urlgrabber
 # For sigul_setup_client
 Requires: coreutils nss-tools
@@ -25,6 +26,7 @@ BuildRequires: gnupg
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: noarch
 Patch0: 0001-Handle-signing-of-source-rpms.patch
+Patch1: 0002-Temporary-workaround-for-accidentially-re-downloadin.patch
 
 %description
 A signing server, which lets authorized users sign data without having any
@@ -34,6 +36,7 @@ that connects the two.
 %prep
 %setup -q
 %patch0 -p1 
+%patch1 -p1 
 
 %build
 %configure
@@ -93,6 +96,13 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Tue Jul 28 2009 Jesse Keating <jkeating@redhat.com> - 0.96-4
+- Add another patch to temporarily work around a stale koji issue.
+- Bump python-nss reqs up now that we have a newer one in EPEL
+
+* Mon Jul 27 2009 Jesse Keating <jkeating@redhat.com> - 0.96-3
+- Setup the Requires right for EL5
+
 * Mon Jul 27 2009 Jesse Keating <jkeating@redhat.com> - 0.96-2
 - Fix various bugs while testing (release by Mitr)
 - Patch from jkeating for srpm signing.
