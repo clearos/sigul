@@ -1,11 +1,10 @@
 Summary: A signing server and related software client
 Name: sigul
-Version: 0.96
-Release: 6%{?dist}
+Version: 0.97
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
-# Source may not be uploaded yet
 Source0: https://fedorahosted.org/releases/s/i/sigul/sigul-%{version}.tar.bz2
 Source1: sigul_bridge.init
 Source2: sigul_server.init
@@ -25,8 +24,6 @@ BuildRequires: python
 BuildRequires: gnupg
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: noarch
-Patch0: 0001-Handle-signing-of-source-rpms.patch
-Patch1: 0002-Temporary-workaround-for-accidentially-re-downloadin.patch
 
 %description
 A signing server, which lets authorized users sign data without having any
@@ -35,8 +32,6 @@ that connects the two.
 
 %prep
 %setup -q
-%patch0 -p1 
-%patch1 -p1 
 
 %build
 %configure
@@ -80,7 +75,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING NEWS README
 %dir %{_sysconfdir}/sigul
 %config(noreplace) %{_sysconfdir}/sigul/client.conf
 %config(noreplace) %attr(640,root,sigul) %{_sysconfdir}/sigul/bridge.conf
@@ -96,6 +91,10 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Fri Jul 31 2009 Miloslav Trmač <mitr@redhat.com> - 0.97-1
+- Update to sigul-0.97.
+- Ship NEWS.
+
 * Tue Jul 28 2009 Jesse Keating <jkeating@redhat.com> - 0.96-6
 - Fix the patch in -4
 
