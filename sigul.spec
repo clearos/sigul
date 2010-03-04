@@ -22,7 +22,6 @@ Requires(postun): initscripts
 BuildRequires: python
 # To detect the path correctly in configure
 BuildRequires: gnupg
-BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: noarch
 
 %description
@@ -38,7 +37,6 @@ that connects the two.
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT INSTALL='install -p' install
 mkdir -p $RPM_BUILD_ROOT%{_initrddir} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
 install -p %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/sigul_bridge
@@ -91,6 +89,8 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+- Drop no longer necessary references to BuildRoot:
+
 * Fri Jul 31 2009 Miloslav Trmač <mitr@redhat.com> - 0.97-1
 - Update to sigul-0.97.
 - Ship NEWS.
