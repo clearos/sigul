@@ -1,7 +1,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.97
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -89,6 +89,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.97-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Wed Aug 11 2010 David Malcolm <dmalcolm@redhat.com>
 - recompiling .py files against Python 2.7 (rhbz#623359)
 
