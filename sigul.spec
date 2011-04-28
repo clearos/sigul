@@ -1,3 +1,4 @@
+# FIXME: eventually migrate from sysv to systemd service configuration
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.97
