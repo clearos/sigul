@@ -1,8 +1,8 @@
 # FIXME: eventually migrate from sysv to systemd service configuration
 Summary: A signing server and related software client
 Name: sigul
-Version: 0.97
-Release: 3%{?dist}
+Version: 0.98
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -10,9 +10,9 @@ Source0: https://fedorahosted.org/releases/s/i/sigul/sigul-%{version}.tar.bz2
 Source1: sigul_bridge.init
 Source2: sigul_server.init
 Source3: sigul.logrotate
-Requires: koji, logrotate, m2crypto, pexpect, pygpgme, python, python-fedora,
-Requires: python-nss >= 0.6
-Requires: python-sqlalchemy, python-sqlite2
+Requires: koji, logrotate, pexpect, pygpgme, python, python-fedora,
+Requires: python-nss >= 0.11
+Requires: python-sqlalchemy >= 0.5, python-sqlite2
 Requires: python-urlgrabber
 # For sigul_setup_client
 Requires: coreutils nss-tools
@@ -90,6 +90,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Tue May 31 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-1
+- Update to sigul-0.98.
+
 * Wed Feb 09 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.97-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
