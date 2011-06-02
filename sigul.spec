@@ -2,7 +2,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.98
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -10,7 +10,7 @@ Source0: https://fedorahosted.org/releases/s/i/sigul/sigul-%{version}.tar.bz2
 Source1: sigul_bridge.init
 Source2: sigul_server.init
 Source3: sigul.logrotate
-Requires: koji, logrotate, pexpect, pygpgme, python, python-fedora,
+Requires: gnupg, koji, logrotate, pexpect, pygpgme, python, python-fedora,
 Requires: python-nss >= 0.11
 Requires: python-sqlalchemy >= 0.5, python-sqlite2
 Requires: python-urlgrabber
@@ -90,6 +90,10 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Thu Jun  2 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-2
+- Add Requires: gnupg
+  Resolves: #664536
+
 * Tue May 31 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-1
 - Update to sigul-0.98.
 
