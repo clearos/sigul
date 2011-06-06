@@ -1,8 +1,8 @@
 # FIXME: eventually migrate from sysv to systemd service configuration
 Summary: A signing server and related software client
 Name: sigul
-Version: 0.98
-Release: 2%{?dist}
+Version: 0.99
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -90,6 +90,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Mon Jun  6 2011 Miloslav Trmač <mitr@redhat.com> - 0.99-1
+- Update to sigul-0.99.
+
 * Thu Jun  2 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-2
 - Add Requires: gnupg
   Resolves: #664536
