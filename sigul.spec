@@ -2,7 +2,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.99
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -12,8 +12,11 @@ Source2: sigul_server.init
 Source3: sigul.logrotate
 Requires: gnupg, koji, logrotate, pexpect, pygpgme, python, python-fedora,
 Requires: python-nss >= 0.11
-Requires: python-sqlalchemy >= 0.5, python-sqlite2
+Requires: python-sqlalchemy >= 0.5
 Requires: python-urlgrabber
+%if 0%{?rhel} && 0%{?rhel} <= 5
+Requires: python-sqlite2
+%endif
 # For sigul_setup_client
 Requires: coreutils nss-tools
 Requires(pre): shadow-utils
@@ -90,6 +93,10 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Wed Feb  8 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 0.99-3
+- Remove the python-sqlite2 dep in Fedora as that package is being retired and
+  sigul can use the sqlite3  module from the python stdlib
+
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.99-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
