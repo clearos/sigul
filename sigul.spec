@@ -1,8 +1,8 @@
 # FIXME: eventually migrate from sysv to systemd service configuration
 Summary: A signing server and related software client
 Name: sigul
-Version: 0.99
-Release: 3%{?dist}
+Version: 0.100
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -93,6 +93,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-1
+- Update to sigul-0.100.
+
 * Wed Feb  8 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 0.99-3
 - Remove the python-sqlite2 dep in Fedora as that package is being retired and
   sigul can use the sqlite3  module from the python stdlib
