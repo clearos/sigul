@@ -2,7 +2,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.100
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -93,6 +93,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-1
 - Update to sigul-0.100.
 
