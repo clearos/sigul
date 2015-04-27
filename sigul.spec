@@ -2,7 +2,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.100
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -14,6 +14,7 @@ Requires: gnupg, koji, logrotate, pexpect, pygpgme, python, python-fedora,
 Requires: python-nss >= 0.11
 Requires: python-sqlalchemy >= 0.5
 Requires: python-urlgrabber
+Requires: rpm-sign
 %if 0%{?rhel} && 0%{?rhel} <= 5
 Requires: python-sqlite2
 %endif
@@ -93,6 +94,10 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Mon Apr 27 2015 Miloslav Trmač <mitr@redhat.com> - 0.100-5
+- Add Requires: rpm-sign
+  Resolves: #1215678
+
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
