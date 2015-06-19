@@ -2,7 +2,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.100
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -94,6 +94,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Fri Jun 19 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Mon Apr 27 2015 Miloslav Trmač <mitr@redhat.com> - 0.100-5
 - Add Requires: rpm-sign
   Resolves: #1215678
