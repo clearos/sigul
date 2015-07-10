@@ -10,6 +10,6 @@ Forked version of sigul with ClearOS changes applied
 * git checkout master
 * git remote add upstream git://pkgs.fedoraproject.org/sigul.git
 * git pull upstream master
-* git checkout clear7
+* git checkout infra7
 * git merge --no-commit master
 * git commit
