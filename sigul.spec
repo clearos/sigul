@@ -1,7 +1,7 @@
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.100
-Release: 0.1.el6
+Release: 6%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -9,7 +9,7 @@ Source0: https://fedorahosted.org/releases/s/i/sigul/sigul-%{version}.tar.bz2
 Source1: sigul_bridge.init
 Source2: sigul_server.init
 Source3: sigul.logrotate
-Requires: gnupg, koji, logrotate, pexpect, pygpgme, python, python-fedora,
+Requires: gnupg1, koji, logrotate, pexpect, pygpgme, python, python-fedora,
 Requires: python-nss >= 0.11
 Requires: python-sqlalchemy >= 0.5
 Requires: python-urlgrabber
@@ -95,8 +95,21 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
-* Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-0.1.el6
-- Build for EL6
+* Fri Jun 19 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
+* Mon Apr 27 2015 Miloslav Trmač <mitr@redhat.com> - 0.100-5
+- Add Requires: rpm-sign
+  Resolves: #1215678
+
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.100-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
 * Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-1
 - Update to sigul-0.100.
