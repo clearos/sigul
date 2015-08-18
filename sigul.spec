@@ -1,8 +1,7 @@
-# FIXME: eventually migrate from sysv to systemd service configuration
 Summary: A signing server and related software client
 Name: sigul
 Version: 0.100
-Release: 1%{?dist}
+Release: 0.1.el6
 License: GPLv2
 Group: Applications/Internet
 URL: https://fedorahosted.org/sigul/
@@ -24,8 +23,6 @@ Requires(post): chkconfig
 Requires(preun): chkconfig, initscripts
 Requires(postun): initscripts
 BuildRequires: python
-# To detect the path correctly in configure
-BuildRequires: gnupg
 BuildArch: noarch
 
 %description
@@ -46,6 +43,11 @@ mkdir -p $RPM_BUILD_ROOT%{_initrddir} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
 install -p %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/sigul_bridge
 install -p %{SOURCE2} $RPM_BUILD_ROOT%{_initrddir}/sigul_server
 install -m 0644 -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/sigul
+# Edit the path here instead of BuildRequires: gnupg1 and configuring with GPG=,
+# we would need to get gnupg1 into the build repo for that...
+sed -i -e '/gnupg_bin/s,^.*$,gnupg_bin = "/usr/bin/gpg1",' \
+        $RPM_BUILD_ROOT%{_datadir}/sigul/settings.py
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,6 +95,9 @@ fi
 %dir %attr(700,sigul,sigul) %{_localstatedir}/lib/sigul/gnupg
 
 %changelog
+* Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-0.1.el6
+- Build for EL6
+
 * Tue Jul 17 2012 Miloslav Trmač <mitr@redhat.com> - 0.100-1
 - Update to sigul-0.100.
 
@@ -109,6 +114,9 @@ fi
 * Thu Jun  2 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-2
 - Add Requires: gnupg
   Resolves: #664536
+
+* Wed Jun  1 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-0.1.el6
+- Build for EL6
 
 * Tue May 31 2011 Miloslav Trmač <mitr@redhat.com> - 0.98-1
 - Update to sigul-0.98.
